@@ -50,17 +50,27 @@ public final class FighterFactory {
 	public Fighter createFighter() {
 		switch (random.nextInt(NumberOfKnownFighterTypes)) {
 			case 0:
-				return new AWing(nameGenerator.generateName(), loadImage("fighter/awing.jpg"));
+				if(!imageMap.containsKey("fighter/awing.jpg"))
+					imageMap.put("fighter/awing.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/awing.jpg"));
+				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/awing.jpg"));
 			case 1:
-				return new XWing(nameGenerator.generateName(), loadImage("fighter/xwing.jpg"));
+				if(!imageMap.containsKey("fighter/xwing.jpg"))
+					imageMap.put("fighter/xwing.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/xwing.jpg"));
+				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/xwing.jpg"));
 			case 2:
-				return new YWing(nameGenerator.generateName(), loadImage("fighter/ywing.jpg"));
+				if(!imageMap.containsKey("fighter/ywing.jpg"))
+					imageMap.put("fighter/ywing.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/ywing.jpg"));
+				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/ywing.jpg"));
 			case 3:
-				return new TieBomber(nameGenerator.generateName(), loadImage("fighter/tiebomber.jpg"));
+				if(!imageMap.containsKey("fighter/tiebomber.jpg"))
+					imageMap.put("fighter/tiebomber.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tiebomber.jpg"));
+				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/tiebomber.jpg"));
 			case 4:
-				return new TieFighter(nameGenerator.generateName(), loadImage("fighter/tiefighter.jpg"));
+				if(!imageMap.containsKey("fighter/tiefighter.jpg"))
+					imageMap.put("fighter/tiefighter.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tiefighter.jpg"));
+				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/tiefighter.jpg"));
 			default:
-				return new TieInterceptor(nameGenerator.generateName(), loadImage("fighter/tieinterceptor.jpg"));
+				return new TieInterceptor(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tieinterceptor.jpg"));
 		}
 	}
 }
