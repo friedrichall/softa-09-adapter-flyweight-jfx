@@ -10,6 +10,8 @@ import ohm.softa.a09.resource.ResourceLoader;
 import ohm.softa.a09.util.NameGenerator;
 import javafx.scene.image.Image;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -25,6 +27,14 @@ public final class FighterFactory {
 	private final NameGenerator nameGenerator;
 	private final ResourceLoader<Image> imageResourceLoader;
 
+	private final Map<String, Image> imageMap = new HashMap<>();
+
+	private Image loadImage(String path){
+		if (!imageMap.containsKey(path))
+			imageMap.put(path, imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "path"));
+		return imageMap.get(path);
+
+	}
 	public FighterFactory() {
 		nameGenerator = new NameGenerator();
 		random = new Random();
@@ -40,15 +50,25 @@ public final class FighterFactory {
 	public Fighter createFighter() {
 		switch (random.nextInt(NumberOfKnownFighterTypes)) {
 			case 0:
-				return new AWing(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/awing.jpg"));
+				if(!imageMap.containsKey("fighter/awing.jpg"))
+					imageMap.put("fighter/awing.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/awing.jpg"));
+				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/awing.jpg"));
 			case 1:
-				return new XWing(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/xwing.jpg"));
+				if(!imageMap.containsKey("fighter/xwing.jpg"))
+					imageMap.put("fighter/xwing.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/xwing.jpg"));
+				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/xwing.jpg"));
 			case 2:
-				return new YWing(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/ywing.jpg"));
+				if(!imageMap.containsKey("fighter/ywing.jpg"))
+					imageMap.put("fighter/ywing.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/ywing.jpg"));
+				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/ywing.jpg"));
 			case 3:
-				return new TieBomber(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tiebomber.jpg"));
+				if(!imageMap.containsKey("fighter/tiebomber.jpg"))
+					imageMap.put("fighter/tiebomber.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tiebomber.jpg"));
+				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/tiebomber.jpg"));
 			case 4:
-				return new TieFighter(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tiefighter.jpg"));
+				if(!imageMap.containsKey("fighter/tiefighter.jpg"))
+					imageMap.put("fighter/tiefighter.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tiefighter.jpg"));
+				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/tiefighter.jpg"));
 			default:
 				return new TieInterceptor(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tieinterceptor.jpg"));
 		}
