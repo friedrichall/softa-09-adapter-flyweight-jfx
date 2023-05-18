@@ -54,17 +54,11 @@ public final class FighterFactory {
 			case 1:
 				return new AWing(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/xwing.jpg"));
 			case 2:
-				if(!imageMap.containsKey("fighter/ywing.jpg"))
-					imageMap.put("fighter/ywing.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/ywing.jpg"));
-				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/ywing.jpg"));
+				return new AWing(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/ywing.jpg"));
 			case 3:
-				if(!imageMap.containsKey("fighter/tiebomber.jpg"))
-					imageMap.put("fighter/tiebomber.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tiebomber.jpg"));
-				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/tiebomber.jpg"));
+				return new AWing(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tiebomber.jpg"));
 			case 4:
-				if(!imageMap.containsKey("fighter/tiefighter.jpg"))
-					imageMap.put("fighter/tiefighter.jpg", imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tiefighter.jpg"));
-				return new AWing(nameGenerator.generateName(), imageMap.get("fighter/tiefighter.jpg"));
+				return new AWing(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tiefighter.jpg"));
 			default:
 				return new TieInterceptor(nameGenerator.generateName(), imageResourceLoader.loadResource(ClassLoader.getSystemClassLoader(), "fighter/tieinterceptor.jpg"));
 		}
